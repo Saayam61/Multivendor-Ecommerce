@@ -614,6 +614,14 @@ canvas {
     background: #fb9678
 }
 
+.order-table .badge-delete {
+    background: #ff0000;
+}
+
+.order-table .badge-edit {
+    background: #33a2ff;
+}
+
 .messenger-box {
     padding-top: 15px
 }
@@ -1620,20 +1628,20 @@ header .form-inline .search-form.close {
     padding: 0;
     border: 0 solid transparent;
     -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, .08);
-    box-shadow: 0 0 20px rgba(0, 0, 0, .08)
+    box-shadow: 0 0 20px rgba(0, 0, 0, .08);
 }
 
 .card .box-title {
     font-weight: 600;
-    font-size: 1em;
-    padding: 5px 0
+    font-size: 20px;
+    padding: 5px 0;
 }
 
 .card .weather-title.box-title {
     padding: 0 15px;
     line-height: 50px;
     background: #fff;
-    border-radius: 5px 5px 0 0
+    border-radius: 5px 5px 0 0;
 }
 
 .card.weather-box .card-body {
@@ -3332,4 +3340,16 @@ footer.site-footer .footer-inner a {
 .field_error{
     color: red;
     margin-top: 15px;
+}
+.card .box-link {
+    font-weight: 600;
+    font-size: 16px;
+    padding: 5px 0
+}
+.card .box-link a {
+    color: #000;
+    text-decoration: underline;
+}
+.badge a {
+    color: #fff;
 }
