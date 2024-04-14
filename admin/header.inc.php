@@ -34,19 +34,19 @@ else{
                <ul class="nav navbar-nav">
                   <li class="menu-title">Menu</li>
                   <li class="menu-item-has-children dropdown">
-                     <a href="user.php" > Users </a>
+                     <a href="users.php" > Users </a>
                   </li>
                   <li class="menu-item-has-children dropdown">
                      <a href="categories.php" > Categories </a>
                   </li>
 				  <li class="menu-item-has-children dropdown">
-                     <a href="product.php" > Products </a>
+                     <a href="products.php" > Products </a>
                   </li>
 				  <li class="menu-item-has-children dropdown">
-                     <a href="order.php" > Orders </a>
+                     <a href="orders.php" > Orders </a>
                   </li>
 				  <li class="menu-item-has-children dropdown">
-                     <a href="contact.php" > Contacts </a>
+                     <a href="contacts.php" > Contacts </a>
                   </li>
                </ul>
             </div>

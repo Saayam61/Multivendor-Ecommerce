@@ -14,17 +14,17 @@ if(isset($_GET['type']) && $_GET['type']!=''){
             $status = '0';
         }
 
-        $update_status_sql = "UPDATE categories SET status = '$status' WHERE id = '$id' ";
+        $update_status_sql = "UPDATE product SET status = '$status' WHERE id = '$id' ";
         mysqli_query($con, $update_status_sql);
     }
     if($type == 'delete'){
         $id = get_safe_value($con, $_GET['id']);
-        $delete_sql = "DELETE FROM categories WHERE id = '$id' ";
+        $delete_sql = "DELETE FROM product WHERE id = '$id' ";
         mysqli_query($con, $delete_sql);
     }
 }
 
-$sql = "SELECT * FROM categories ORDER BY categories asc";
+$sql = "SELECT * FROM product ORDER BY name asc";
 $res = mysqli_query($con, $sql);
 ?>
 <div class="content pb-0">
@@ -33,8 +33,8 @@ $res = mysqli_query($con, $sql);
                   <div class="col-xl-12">
                      <div class="card">
                         <div class="card-body">
-                           <h4 class="box-title"> Categories </h4>
-                           <h4 class="box-link"><a href="manage_categories.php"> Add Categories </a></h4>
+                           <h4 class="box-title"> Products </h4>
+                           <h4 class="box-link"><a href="manage_products.php"> Add Products </a></h4>
                         </div>
                         <div class="card-body--">
                            <div class="table-stats order-table ov-h">
@@ -44,6 +44,11 @@ $res = mysqli_query($con, $sql);
                                        <th class="serial">#</th>
                                        <th>ID</th>
                                        <th>Categories</th>
+                                       <th>Name</th>
+                                       <th>Image</th>
+                                       <th>MRP</th>
+                                       <th>Price</th>
+                                       <th>Qty</th>
                                        <th></th>
                                     </tr>
                                  </thead>
@@ -54,7 +59,12 @@ $res = mysqli_query($con, $sql);
                                     <tr>
                                         <td class="serial"><?php echo $i; ?></td>
                                         <td><?php echo $row['id']; ?></td>
-                                        <td><?php echo $row['categories']; ?></td>
+                                        <td><?php echo $row['categories_id']; ?></td>
+                                        <td><?php echo $row['name']; ?></td>
+                                        <td><?php echo $row['image']; ?></td>
+                                        <td><?php echo $row['mrp']; ?></td>
+                                        <td><?php echo $row['price']; ?></td>
+                                        <td><?php echo $row['qty']; ?></td>
                                         <td>
                                         <?php
                                         if($row['status']==1){
