@@ -24,7 +24,8 @@ if(isset($_GET['type']) && $_GET['type']!=''){
     }
 }
 
-$sql = "SELECT * FROM product ORDER BY name asc";
+$sql = "SELECT product.*, categories.categories FROM product,categories WHERE product.categories_id = 
+categories.id ORDER BY product.name asc";
 $res = mysqli_query($con, $sql);
 ?>
 <div class="content pb-0">
@@ -59,7 +60,7 @@ $res = mysqli_query($con, $sql);
                                     <tr>
                                         <td class="serial"><?php echo $i; ?></td>
                                         <td><?php echo $row['id']; ?></td>
-                                        <td><?php echo $row['categories_id']; ?></td>
+                                        <td><?php echo $row['categories']; ?></td>
                                         <td><?php echo $row['name']; ?></td>
                                         <td><?php echo $row['image']; ?></td>
                                         <td><?php echo $row['mrp']; ?></td>
