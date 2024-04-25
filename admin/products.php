@@ -56,13 +56,13 @@ $res = mysqli_query($con, $sql);
                                  <tbody>
                                     <?php 
                                     $i = 1;
-                                    while($row =  mysqli_fetch_assoc($res)){?>
+                                    while($row =  mysqli_fetch_assoc($res)){ ?>
                                     <tr>
-                                        <td class="serial"><?php echo $i; ?></td>
+                                        <td class="serial"><?php echo $i; $i++;?></td>
                                         <td><?php echo $row['id']; ?></td>
                                         <td><?php echo $row['categories']; ?></td>
                                         <td><?php echo $row['name']; ?></td>
-                                        <td><?php echo $row['image']; ?></td>
+                                        <td><img src="../media/products/<?php echo $row['image']; ?>"/></td>
                                         <td><?php echo $row['mrp']; ?></td>
                                         <td><?php echo $row['price']; ?></td>
                                         <td><?php echo $row['qty']; ?></td>
