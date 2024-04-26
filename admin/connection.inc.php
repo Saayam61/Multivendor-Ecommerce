@@ -15,4 +15,11 @@ else{
     mysqli_connect_error($con);
 }
 
+define('SERVER_PATH', $_SERVER['DOCUMENT_ROOT'].'/Multivendor-Ecommerce/');
+define('SITE_PATH', 'http://localhost/Multivendor-Ecommerce/');
+
+define('PRODUCT_IMAGE_SERVER_PATH', SERVER_PATH.'media/products/');
+
+define('PRODUCT_IMAGE_SITE_PATH', SITE_PATH.'media/products/');
+
 ?>

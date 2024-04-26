@@ -5,12 +5,12 @@ if(isset($_GET['type']) && $_GET['type']!=''){
     $type = get_safe_value($con, $_GET['type']);
     if($type == 'delete'){
         $id = get_safe_value($con, $_GET['id']);
-        $delete_sql = "DELETE FROM contacts WHERE id = '$id' ";
+        $delete_sql = "DELETE FROM users WHERE id = '$id' ";
         mysqli_query($con, $delete_sql);
     }
 }
 
-$sql = "SELECT * FROM contacts ORDER BY id desc";
+$sql = "SELECT * FROM users ORDER BY id desc";
 $res = mysqli_query($con, $sql);
 ?>
 <div class="content pb-0">
@@ -19,7 +19,7 @@ $res = mysqli_query($con, $sql);
                   <div class="col-xl-12">
                      <div class="card">
                         <div class="card-body">
-                           <h4 class="box-title"> Contacts </h4>
+                           <h4 class="box-title"> Users </h4>
                         </div>
                         <div class="card-body--">
                            <div class="table-stats order-table ov-h">
@@ -30,8 +30,8 @@ $res = mysqli_query($con, $sql);
                                        <th>ID</th>
                                        <th>Name</th>
                                        <th>Email</th>
+                                       <th>Password</th>
                                        <th>Mobile</th>
-                                       <th>Query</th>
                                        <th>Date</th>
                                        <th></th>
                                     </tr>
@@ -45,8 +45,8 @@ $res = mysqli_query($con, $sql);
                                         <td><?php echo $row['id']; ?></td>
                                         <td><?php echo $row['name']; ?></td>
                                         <td><?php echo $row['email']; ?></td>
+                                        <td><?php echo $row['password']; ?></td>
                                         <td><?php echo $row['mobile']; ?></td>
-                                        <td><?php echo $row['comment']; ?></td>
                                         <td><?php echo $row['added_on']; ?></td>
                                         <td>
                                         <?php
