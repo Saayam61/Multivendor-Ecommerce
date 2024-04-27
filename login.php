@@ -9,9 +9,9 @@ require('header.php');
                         <div class="col-xs-12">
                             <div class="bradcaump__inner">
                                 <nav class="bradcaump-inner">
-                                  <a class="breadcrumb-item" href="index.html">Home</a>
+                                  <a class="breadcrumb-item" href="index.php">Home</a>
                                   <span class="brd-separetor"><i class="zmdi zmdi-chevron-right"></i></span>
-                                  <span class="breadcrumb-item active">Login</span>
+                                  <span class="breadcrumb-item active">Login/Register</span>
                                 </nav>
                             </div>
                         </div>
@@ -32,16 +32,18 @@ require('header.php');
 								</div>
 							</div>
 							<div class="col-xs-12">
-								<form id="contact-form" action="#" method="post">
+								<form id="contact-form" method="post">
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="text" name="name" placeholder="Your Email*" style="width:100%">
+											<input type="email" name="login_email" id="login_email" placeholder="Your Email*" style="width:100%">
 										</div>
+                                        <span class="field_error" id="email_error"></span>
 									</div>
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="text" name="name" placeholder="Your Password*" style="width:100%">
+											<input type="password" name="login_password" id="login_password" placeholder="Your Password*" style="width:100%">
 										</div>
+                                        <span class="field_error" id="password_error"></span>
 									</div>
 									
 									<div class="contact-btn">
@@ -65,30 +67,40 @@ require('header.php');
 								</div>
 							</div>
 							<div class="col-xs-12">
-								<form id="contact-form" action="#" method="post">
+								<form id="contact-form" method="post">
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="text" name="name" placeholder="Your Name*" style="width:100%">
+											<input type="text" name="name" id="name" placeholder="Your Name*" style="width:100%">
 										</div>
+                                        <span class="field_error" id="name_error"></span>
 									</div>
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="text" name="name" placeholder="Your Email*" style="width:100%">
+											<input type="email" name="email" id="email" placeholder="Your Email*" style="width:100%">
 										</div>
+                                        <span class="field_error" id="email_error"></span>
 									</div>
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="text" name="name" placeholder="Your Mobile*" style="width:100%">
+											<input type="tel" name="mobile" id="mobile" placeholder="Your Mobile*" style="width:100%">
 										</div>
+                                        <span class="field_error" id="mobile_error"></span>
 									</div>
 									<div class="single-contact-form">
 										<div class="contact-box name">
-											<input type="text" name="name" placeholder="Your Password*" style="width:100%">
+											<input type="password" name="password" id="password" placeholder="Your Password*" style="width:100%">
 										</div>
+                                        <span class="field_error" id="password_error"></span>
+									</div>
+									<div class="single-contact-form">
+										<div class="contact-box name">
+											<input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password*" style="width:100%">
+										</div>
+                                        <span class="field_error" id="cpassword_error"></span>
 									</div>
 									
 									<div class="contact-btn">
-										<button type="submit" class="fv-btn">Register</button>
+										<button type="button" class="fv-btn" onclick="user_register()">Register</button>
 									</div>
 								</form>
 								<div class="form-output">
