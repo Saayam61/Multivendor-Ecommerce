@@ -486,13 +486,53 @@ function user_register(){
         jQuery('#cpassword_error').html('Please re-enter your password');
         is_error = "yes";
     }
+    if(cpassword != password){
+        jQuery('#cpassword_error').html('Passwords do not match');
+        is_error = "yes";
+    }
     if(is_error == ''){
         jQuery.ajax({
-            url:'send_message.php',
+            url:'register_submit.php',
             type:'post',
-            data:'name='+name+'&email='+email+'&mobile='+mobile+'&password='+password,
+            data:'name='+name+'&email='+email+'&mobile='+mobile+'&password='+password+'&cpassword='+cpassword,
             success:function(result){
-                alert(result);
+                if(result == "present"){
+                    jQuery('#email_error').html('User already exists');
+                }
+                if(result == "insert"){
+                    jQuery('.register_msg p').html('User resgistered successfully');
+                }
+            }
+        });
+    }
+}
+
+function user_login(){
+    jQuery('.field_error').html('');
+    var email = jQuery("#login_email").val();
+    var password = jQuery("#login_password").val();
+    var is_error = '';
+
+    if(email == ""){
+        jQuery('#login_email_error').html('Please enter your email');
+        is_error = "yes";
+    }
+    if(password == ""){
+        jQuery('#login_password_error').html('Please enter your password');
+        is_error = "yes";
+    }
+    if(is_error == ''){
+        jQuery.ajax({
+            url:'login_submit.php',
+            type:'post',
+            data:'email='+email+'&password='+password,
+            success:function(result){
+                if(result == "invalid"){
+                    jQuery('.login_msg p').html('Email and Password do not match');
+                }
+                if(result == "valid"){
+                    window.location.href = 'index.php';
+                }
             }
         });
     }
