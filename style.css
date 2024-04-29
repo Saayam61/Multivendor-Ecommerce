@@ -3395,6 +3395,12 @@ ul.htc__instagram__posts.owl-carousel li img {
 .paymentinfo .single-method a i.zmdi{
     padding-right: 5px;  
 }
+.paymentinfo .single-method{
+    display: inline-block;
+    margin-top: 15px;
+    font-family: "Poppins";
+    font-size: 16px;
+}
 .paymentinfo .single-method a{
     display: inline-block;
     margin-top: 15px;

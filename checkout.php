@@ -7,6 +7,50 @@ if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0){
 </script>
 <?php
 }
+$cart_total = 0;
+if(isset($_POST['submit'])){
+    $address = get_safe_value($con, $_POST['address']);
+    $city = get_safe_value($con, $_POST['city']);
+    $pincode = get_safe_value($con, $_POST['pincode']);
+    $payment_type = get_safe_value($con, $_POST['payment_type']);
+    $user_id = $_SESSION['USER_ID'];
+
+    foreach($_SESSION['cart'] as $key=>$val){
+        $product_arr = get_product($con , '', '', $key);
+        $price = $product_arr[0]['price'];
+        $qty = $val['qty'];
+        $cart_total = $cart_total + ($qty * $price);
+    }
+    $total_price = $cart_total;
+    $payment_status = 'pending';
+    if($payment_type == 'COD'){
+        $payment_status = 'success';
+    }
+    $order_status = 'pending';
+    $added_on = date('Y-m-d H:i:s');
+
+    mysqli_query($con, "INSERT INTO orders(user_id, address, city, pincode, payment_type, total_price, 
+    payment_status, order_status, added_on) VALUES('$user_id', '$address', '$city', 
+    '$pincode', '$payment_type', '$total_price', '$payment_status', '$order_status', '$added_on')");
+
+    $order_id = mysqli_insert_id($con);
+
+    foreach($_SESSION['cart'] as $key=>$val){
+        $product_arr = get_product($con , '', '', $key);
+        $price = $product_arr[0]['price'];
+        $qty = $val['qty'];
+        $total_price = $qty * $price;
+
+        mysqli_query($con, "INSERT INTO order_details(order_id, product_id, qty, price) VALUES
+        ('$order_id', '$key', '$qty', '$total_price')");
+    }
+    unset($_SESSION['cart']);
+    ?>
+    <script>
+        window.location.href = 'thank_you.php';
+    </script>
+    <?php
+}
 ?>
 <!-- Start Bradcaump area -->
 <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/4.jpg) no-repeat scroll center center / cover ;">
@@ -107,62 +151,43 @@ if(!isset($_SESSION['cart']) || count($_SESSION['cart']) == 0){
                                     <div class="<?php echo $accordion_class; ?>">
                                         Address Information
                                     </div>
-                                    <div class="accordion__body">
-                                        <div class="bilinfo">
-                                            <form action="#">
+                                    <form method="post">
+                                        <div class="accordion__body">
+                                            <div class="bilinfo">
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="single-input">
-                                                            <input type="text" placeholder="First name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Street Address">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Apartment/Block/House (optional)">
+                                                            <input type="text" name="address" placeholder="Street Address" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="single-input">
-                                                            <input type="text" placeholder="City/State">
+                                                            <input type="text" name="city" placeholder="City/State" required>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="single-input">
-                                                            <input type="text" placeholder="Post code/ zip">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="single-input">
-                                                            <input type="email" placeholder="Email address">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="single-input">
-                                                            <input type="text" placeholder="Phone number">
+                                                            <input type="text" name="pincode" placeholder="Post code/ zip" required>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="<?php echo $accordion_class; ?>">
-                                        payment information
-                                    </div>
-                                    <div class="accordion__body">
-                                        <div class="paymentinfo">
-                                            <div class="single-method">
-                                                <a href="#"><i class="zmdi zmdi-long-arrow-right"></i>Check/ Money Order</a>
-                                            </div>
-                                            <div class="single-method">
-                                                <a href="#" class="paymentinfo-credit-trigger"><i class="zmdi zmdi-long-arrow-right"></i>Credit Card</a>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="<?php echo $accordion_class; ?>">
+                                            payment information
+                                        </div>
+                                        <div class="accordion__body">
+                                            <div class="paymentinfo">
+                                                <div class="single-method">
+                                                    Cash on Delivery <input type="radio" name="payment_type" id="payment_type" value="COD" required>&nbsp;&nbsp;&nbsp;
+                                                    Khalti <input type="radio" class="paymentinfo-credit-trigger" name="payment_type" id="payment_type" value="khalti" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="single-method dark-btn">
+                                            <button type="submit" name="submit">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
