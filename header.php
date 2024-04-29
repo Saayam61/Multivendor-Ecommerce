@@ -99,15 +99,21 @@ $total_product = $obj->totalProduct();
                                 <div class="header__right">
                                     <div class="header__account">
                                         <?php if(isset($_SESSION['USER_LOGIN'])){
-                                            echo '<a href="logout.php">Logout</a> <a href="my_order.php">My Order</a>';
+                                            echo '<a href="logout.php">Logout</a>';
                                         }
                                         else{
                                             echo '<a href="login.php">Login/Register</a>';
                                         }
                                         ?>
                                     </div>
+                                    <div class="header__account">
+                                        <?php if(isset($_SESSION['USER_LOGIN'])){
+                                            echo '<a href="orders.php">Orders</a>';
+                                        }
+                                        ?>
+                                    </div>
                                     <div class="htc__shopping__cart">
-                                        <a class="cart__menu" href="#"><i class="icon-handbag icons"></i></a>
+                                        <a class="cart__menu" href="cart.php"><i class="icon-handbag icons"></i></a>
                                         <a href="cart.php"><span class="htc__qua"><?php echo $total_product; ?></span></a>
                                     </div>
                                 </div>

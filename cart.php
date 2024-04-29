@@ -1,5 +1,12 @@
 <?php 
 require('header.php'); 
+if(!isset($_SESSION['USER_LOGIN'])){
+?>
+<script>
+    window.location.href = 'index.php';
+</script>
+<?php
+}
 ?>
         <!-- Start Bradcaump area -->
         <div class="ht__bradcaump__area" style="background: rgba(0, 0, 0, 0) url(images/bg/4.jpg) no-repeat scroll center center / cover ;">
@@ -40,7 +47,8 @@ require('header.php');
                                     </thead>
                                     <tbody>
                                         <?php
-                                        foreach($_SESSION['cart'] as $key=>$val){
+                                        if(isset($_SESSION['cart'])){
+                                            foreach($_SESSION['cart'] as $key=>$val){
                                             $product_arr = get_product($con , '', '', $key);
                                             $pname = $product_arr[0]['name'];
                                             $mrp = $product_arr[0]['mrp'];
@@ -67,7 +75,7 @@ require('header.php');
                                                 <a href="javascript:void(0)" 
                                             onclick="manage_cart('<?php echo $key?>','remove')">Delete</a></span></td>
                                         </tr>
-                                        <?php } ?>
+                                        <?php } } ?>
                                     </tbody>
                                 </table>
                             </div>

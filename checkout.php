@@ -26,7 +26,7 @@ if(isset($_POST['submit'])){
     if($payment_type == 'COD'){
         $payment_status = 'success';
     }
-    $order_status = 'pending';
+    $order_status = '1';
     $added_on = date('Y-m-d H:i:s');
 
     mysqli_query($con, "INSERT INTO orders(user_id, address, city, pincode, payment_type, total_price, 
@@ -39,10 +39,10 @@ if(isset($_POST['submit'])){
         $product_arr = get_product($con , '', '', $key);
         $price = $product_arr[0]['price'];
         $qty = $val['qty'];
-        $total_price = $qty * $price;
+        // $total_price = $qty * $price;
 
         mysqli_query($con, "INSERT INTO order_details(order_id, product_id, qty, price) VALUES
-        ('$order_id', '$key', '$qty', '$total_price')");
+        ('$order_id', '$key', '$qty', '$price')");
     }
     unset($_SESSION['cart']);
     ?>

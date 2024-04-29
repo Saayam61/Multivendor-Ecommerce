@@ -568,6 +568,10 @@ canvas {
     position: relative
 }
 
+#address_details{
+    margin: 10px;
+}
+
 .order-table:after,
 .order-table:before {
     content: "";
@@ -620,6 +624,25 @@ canvas {
 
 .order-table .badge-edit {
     background: #33a2ff;
+}
+
+.fv-btn button{
+    display: inline-block;
+    height: 35px;
+    line-height: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    background: #c43b68;
+    color: #ffffff;
+    font-family: "Poppins";
+    padding: 0 25px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out 0s;
+}
+.fv-btn button:hover{
+    background: #212121;
 }
 
 .messenger-box {
